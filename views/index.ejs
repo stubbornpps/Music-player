@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Sen&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/46ce832a93.js" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Radiation Music</title>
+</head>
+<body>
+  <audio id='player'  src='<%= songlist[0].directory %>'></audio>
+  <!-- site logo  -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark  justify-content-center">
+       <!-- <i class="fas fa-radiation text-warning "></i> -->
+      <h4 class="mt-1 ml-2 font-weight-light text-warning">Radiation Music</h4>
+  </nav>
+  <!-- close site logo   -->
+    <section class="container-fluid text-light pt-2 ">
+      <div class="row">
+        <!-- Music player  -->
+        <div class="col-lg-12 d-flex p-2 " id="player_view">
+          <img id="player_thumbnail" src='<%= songlist[0].thumbnail%>'  alt="" id='thumbnailplace'  class="img-fluid ml-5" style="width:180px; height: 150px;">
+          <p class="ml-4 mt-4" id="player_songname" style="font-size: 28px; letter-spacing: 0.6px;"><%= songlist[0].name %></p>
+          <video id="video" autoplay></video>
+          <canvas id="canvas"></canvas>
+        </div>
+        <!-- Music Player button  -->
+        <!-- close music player  -->
+        <div class="col-lg-12 " style="height: 90px; margin-bottom: 25px;">
+          <div id="music" class="d-flex  justify-content-around align-items-center" style="width: 100%;">
+            <p style="margin-top: 8px;">0:00</p>
+            <input type="range" class="custom-range" id="customRange1" style="width: 80%;" value="0">
+            <p id='songduration' style="margin-top: 8px;">3:00</p>
+          </div>
+          <div id="utility" class="container ">
+              <div class="button">
+                <i class="fas fa-angle-double-left" id="previoussong"></i>
+                <div class="plpau"><i id="play" class="fas fa-play"></i></div>
+                <i class="fas fa-angle-double-right" id='nextsong'></i>
+                <i  class="fas fa-random"></i>
+              </div>
+              <div class="volume">
+                <div id="mute"><i class="fas fa-volume-down"></i></div>
+                <input type="range" id="progress" class="custom-range" min="0" max="1" step="0.01" value="1">
+                <i id="full" class="fas fa-volume-up"></i>
+              </div>
+          </div>
+        </div>
+        <!-- close music player button  -->
+        <!-- Song list  -->
+        <div class="col-lg-12 " style="padding-left: 5px 15px; ">
+            <h3>Songs List</h3>
+        </div>
+        <div id="list" class="col-lg-12 text-light mt-2" style="height:400px;overflow-y: auto; padding: 20px;">
+          <div id="listHead">
+            <p>Thumbnails</p>
+            <p>Name</p>
+            <p id="head_artist">Artist</p>
+          </div>
+        <% songlist.forEach(function(songs){ %>
+          <div id="listitem"> 
+            <img id="Thumbnail" src='<%= songs.thumbnail%>' alt="">
+            <p id="songname"><%= songs.name %></p>
+            <input type="hidden" value="<%= songs.directory%>" class="songdirectory">
+            <p><%= songs.artist %></p>
+          </div>  
+        <%})%>
+        </div>
+        <!-- close song list  -->
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"> </script>
+</body>
+</html>
